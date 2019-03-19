@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function(event){
             document.getElementById('profileID').setAttribute('src', person.avatarUrl())
         }
         blockstack.getFile("jsonData.json").then(function(file){
+            if (!file){
+                console.log("Debugging in Prod, WTF")
+            }
             jsonData = JSON.parse(file)
             var table = document.getElementById("bData")
             var idx = 0;
@@ -54,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function(event){
                 cell2.innerHTML = "<a data-id=\""+ idx +"\" onclick=\"update(this)\" href=\"#\">Update</a> | <a onclick=\"del(this)\" data-id=\""+ idx +"\" href=\"#\"=>Delete</a>";
                 idx++;
             })
-            
         })
 
     } else if (blockstack.isSignInPending()) {
