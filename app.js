@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(event){
             document.getElementById('profileID').setAttribute('src', person.avatarUrl())
         }
         blockstack.getFile("jsonData.json").then(function(file){
-            if (!file){
+            if (file === null){
                 console.log("Debugging in Prod, WTF")
             }
             jsonData = JSON.parse(file)
