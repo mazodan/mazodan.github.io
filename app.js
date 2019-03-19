@@ -43,20 +43,21 @@ document.addEventListener("DOMContentLoaded", function(event){
         blockstack.getFile("jsonData.json").then(function(file){
             if (file === null){
                 console.log("Debugging in Prod, WTF")
+            } else {
+                jsonData = JSON.parse(file)
+                var table = document.getElementById("bData")
+                var idx = 0;
+                jsonData.forEach(function(val){
+                    var row = table.insertRow()
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    cell1.className = "pv3 pr3 bb b--black-20"
+                    cell2.className = "pv3 pr3 bb b--black-20"
+                    cell1.innerHTML = val.message;
+                    cell2.innerHTML = "<a data-id=\""+ idx +"\" onclick=\"update(this)\" href=\"#\">Update</a> | <a onclick=\"del(this)\" data-id=\""+ idx +"\" href=\"#\"=>Delete</a>";
+                    idx++;
+                })
             }
-            jsonData = JSON.parse(file)
-            var table = document.getElementById("bData")
-            var idx = 0;
-            jsonData.forEach(function(val){
-                var row = table.insertRow()
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                cell1.className = "pv3 pr3 bb b--black-20"
-                cell2.className = "pv3 pr3 bb b--black-20"
-                cell1.innerHTML = val.message;
-                cell2.innerHTML = "<a data-id=\""+ idx +"\" onclick=\"update(this)\" href=\"#\">Update</a> | <a onclick=\"del(this)\" data-id=\""+ idx +"\" href=\"#\"=>Delete</a>";
-                idx++;
-            })
         })
 
     } else if (blockstack.isSignInPending()) {
