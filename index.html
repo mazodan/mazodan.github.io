@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <title>BlockStack CRUD</title>
+    <script src="node_modules/blockstack/dist/blockstack.js"></script>
+    <script src="app.js"></script>
+
+</head>
+<body>
+    <!--
+        This was made in just 3 days, bear with the spaghetti code. This is just a demonstration of what Blockstack can do
+        Let's do it live
+    -->
+
+    <div style="margin: 50px;">
+            <h1 class="f1 helvetica" style="text-align: center;">Blockstack CRUD test App 😎</h1>
+            <h3 class="f3 helvetica" style="text-align: center;">by Dan Mikko</h1>
+            <h2 class="f2 helvetica">This test app uses Blockstack to store data in a decentralized manner</h2>
+            <div class="helvetica">
+                <p>Okay, "decentralized" in this manner is quite misleading. Let me clear things up</p>
+                <p>While the metadata is stored in the blockchain itself, the data itself is stored in some centralized cloud server</p>
+                <p>That means, your encrypted data is at mercy of some centralized server, you can host your GAIA instance, but not practical unless you own your own server</p>
+            </div>
+            
+            <h2 class="f2 helvetica">This CRUD app allows you to store data on this platform, provided that you sign up with blockstack, as it is required to store data</h2>
+            <p class="helvetica">After you successfully logged in, the database will appear</p>
+            <p class="helvetica">This website is kind of a mess right now, did this in just few days of discovering blockstacks, expect this app to be buggy as hell. Do not expect me to refactor this, I actually rushed making this upon knowing about Blockstack from a former classmate</p>
+        
+            <button class="b ba br4 bg-green helvetica" id="signin" style="padding: 10px;">Log-in using Blockstack</button>
+            <button class="b ba br4 bg-red helvetica" id="signout" style="padding: 10px; display: none;">Sign out via Blockstack</button>
+
+            <hr>
+            <div id="mainCRUD" style="display: none;">
+                <div class="fl w-20">
+                    <h3 id="profileName" class="f3 helvetica"></h3>
+                    <img id="profileID" src="" alt="" class="br4 h4 w4 dib">
+                </div>
+                <div class="fl w-40">
+                    <h3 class="f3 helvetica">This will be the location of table and data entry</h3>
+                    <main class="black-80">
+                        <form class="measure">
+                          <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                            <legend class="f4 fw6 ph0 mh0">Insert Your Data</legend>
+                            <div class="mt3">
+                              <label class="db fw6 lh-copy f6" for="comment">Comments</label>
+                              <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="comment"  id="comment">
+                            </div>
+                          </fieldset>
+                          <div class="">
+                            <input id="insert" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Insert Data to Storage">
+                          </div>
+                        </form>
+                      </main>
+                </div>
+                <div class="fl w-40">
+                    <h3 class="f3 helvetica">Table goes here</h3>
+                    <form class="measure" id="updateForm" style="display: none;">
+                        <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                            <legend class="f4 fw6 ph0 mh0">Update Current Data</legend>
+                            <div class="mt3">
+                            <label class="db fw6 lh-copy f6" for="comment">Comments</label>
+                            <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="upd"  id="upd">
+                            </div>
+                        </fieldset>
+                        <div class="">
+                            <input id="confirmUpdate" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Update Data to Storage">
+                            <input id="cancelUpdate" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="button" value="Cancel">
+                        </div>
+                    </form>
+                    <form class="measure" id="deleteForm" style="display: none;">
+                      <h4 class="f4">Are you sure you want to delete this?</h4>
+                      <div class="">
+                        <input id="confirmDelete" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Delete Data">
+                        <input id="cancelDelete" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="button" value="Cancel">
+                      </div>
+                    </form>
+                    <table id="bData" class="f6 w-100 mw8 center" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Comment</th>
+                            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tbody" class="lh-copy">
+                          
+                        </tbody>
+                      </table>               
+                </div>
+            </div>
+            
+    </div>
+    
+
+    
+</body>
+</html>
