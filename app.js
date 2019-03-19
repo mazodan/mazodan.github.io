@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function(event){
                 console.log("Debugging in Prod, WTF")
             } else {
                 jsonData = JSON.parse(file)
+                console.log(jsonData)
                 var table = document.getElementById("bData")
                 var idx = 0;
                 jsonData.forEach(function(val){
